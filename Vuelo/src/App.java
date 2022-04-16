@@ -15,7 +15,9 @@ public class App {
 
         Date fecha_salida = new Date();
         Date fecha_arribe = new Date();
-        Vuelo vuelo1 = new Vuelo(fecha_salida, fecha_arribe, 10.0);
+        fecha_arribe.setDate(fecha_arribe.getDate() + 1);
+
+        Vuelo vuelo1 = new Vuelo(fecha_salida, fecha_arribe, 450.0);
 
         JSONObject personal001 = _test_CrearPersonal("Javier", "Flores");
         JSONObject personal002 = _test_CrearPersonal("Edson", "Mamani");
@@ -43,20 +45,21 @@ public class App {
         return personal1;
     }
 
-   public static JSONObject _test_CrearAeronave() {
+    public static JSONObject _test_CrearAeronave() {
         JSONObject aeronave = new JSONObject();
         aeronave.put("key", UUID.randomUUID().toString());
         aeronave.put("marca", "Boeing");
         aeronave.put("modelo", "777");
 
         JSONArray arr = new JSONArray();
-        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "1").put("clase", "primera"));
-        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "2").put("clase", "primera"));
-        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "3").put("clase", "ejecutiva"));
-        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "4").put("clase", "ejecutiva"));
+        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "1"));
+        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "2"));
+        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "3"));
+        arr.put(new JSONObject().put("key", UUID.randomUUID().toString()).put("numero", "4"));
         aeronave.put("asientos", arr);
         return aeronave;
     }
+
     public static JSONObject _test_CrearAeroPuerto(String nombre) {
         JSONObject obj = new JSONObject();
         obj.put("key", UUID.randomUUID().toString());
@@ -64,5 +67,4 @@ public class App {
         return obj;
     }
 
- 
 }

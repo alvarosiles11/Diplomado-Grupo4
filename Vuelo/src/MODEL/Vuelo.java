@@ -9,27 +9,26 @@ import org.json.JSONObject;
 
 public class Vuelo {
 
-    String key;
-    String numeroVuelo;
-    JSONObject aeronave;
-    ArrayList<Tripulante> listaTripulante;
-    ArrayList<AsientoDisponible> listaAsiento;
-    JSONObject aeropuertoOrigen;
-    JSONObject aeropuertoDestino;
-    Date fecha_arribe; // INFO: YYYY-MM-DD HH:MM:SS
-    Date fecha_salida;
-    double precio;
+    private String key;
+    private String numeroVuelo;
+    private JSONObject aeronave;
+    private ArrayList<Tripulante> listaTripulante;
+    private ArrayList<AsientoDisponible> listaAsiento;
+    private JSONObject aeropuertoOrigen;
+    private JSONObject aeropuertoDestino;
+    private Date fecha_arribe; // INFO: YYYY-MM-DD HH:MM:SS
+    private Date fecha_salida;
+    private double precio;
 
     public Vuelo(Date fecha_salida, Date fecha_arribe, double precio) {
         this.key = UUID.randomUUID().toString();
         this.numeroVuelo = null;// INFO: Solicitar al aeropuerto cuendo se completen los datos requeridos.
-        // this.aeronave = aeronave;
         this.aeronave = null;
         this.listaTripulante = new ArrayList<Tripulante>(); // INFO: Luego se asignan tripulantes en el vuelo.
         this.precio = precio;
         this.listaAsiento = crear_acientos_disponibles();
-        this.aeropuertoOrigen = null; // TODO
-        this.aeropuertoDestino = null; // TODO
+        this.aeropuertoOrigen = null;
+        this.aeropuertoDestino = null;
         this.fecha_arribe = fecha_arribe;
         this.fecha_salida = fecha_salida;
         System.out.println("Se a creado un nuevo vuelo");
@@ -46,7 +45,7 @@ public class Vuelo {
         ArrayList<AsientoDisponible> arr = new ArrayList<AsientoDisponible>();
         for (int i = 0; i < asientos_de_aeronave.length(); i++) {
             JSONObject asiento = asientos_de_aeronave.getJSONObject(i);
-            arr.add(new AsientoDisponible(asiento, this.precio, asiento.getString("clase")));
+            arr.add(new AsientoDisponible(asiento, "comercial", this.precio));
         }
         System.out.println("Se crearon los asientos disponibles");
         return arr;
@@ -72,12 +71,10 @@ public class Vuelo {
     @Override
     public String toString() {
         return "\n[VUELO]: " + this.key + "\n" +
-                "Aeronave: " + this.aeronave + "\n" +
-                "Tripulantes: " + this.listaTripulante + "\n" +
-                "Asientos: " + this.listaAsiento + "\n" +
-                "Aeropuerto Origen: " + this.aeropuertoOrigen + "\n" +
-                "Aeropuerto Destino: " + this.aeropuertoDestino + "\n" +
-                "Fecha Arribe: " + this.fecha_arribe + "\n" +
-                "Fecha Salida: " + this.fecha_salida + "\n";
+                "[Aeronave]: " + this.aeronave + "\n" +
+                "\nTripulantes: " + this.listaTripulante + "\n" +
+                "Asientos: " + this.listaAsiento + "\n\n" +
+                "[Aeropuerto Origen]: " + this.aeropuertoOrigen + " Itinerario: " + this.fecha_salida + "\n" +
+                "[Aeropuerto Destino]: " + this.aeropuertoDestino + " Itinerario: " + this.fecha_arribe + "\n";
     }
 }

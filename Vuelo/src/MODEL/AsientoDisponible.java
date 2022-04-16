@@ -4,11 +4,11 @@ import org.json.JSONObject;
 
 public class AsientoDisponible {
 
-    JSONObject asiento; // INFO: DEL MICROSERVICIO AERONAVE.
-    Double precio;
-    String clase;
+    private JSONObject asiento; // INFO: DEL MICROSERVICIO AERONAVE.
+    private double precio;
+    private String clase;
 
-    public AsientoDisponible(JSONObject asiento, Double precio, String clase) {
+    public AsientoDisponible(JSONObject asiento, String clase, double precio) {
         this.precio = precio;
         this.clase = clase;
         this.asiento = asiento;
@@ -16,6 +16,7 @@ public class AsientoDisponible {
 
     @Override
     public String toString() {
-        return "\n[ASIENTOS_DISPONIBLES]: " + this.precio + " - " + this.clase + " - " + this.asiento.toString();
+        return "\n[ASIENTOS_DISPONIBLES]:  Clase: " + this.clase + " - Precio: " + this.precio + "Bs - "
+                + this.asiento.toString();
     }
 }

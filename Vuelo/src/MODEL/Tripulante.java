@@ -4,9 +4,9 @@ import java.util.UUID;
 import org.json.JSONObject;
 
 public class Tripulante {
-    String key;
-    String descripcion;
-    JSONObject personal;
+    private String key;
+    private String descripcion;
+    private JSONObject personal;
 
     public Tripulante(String descripcion, JSONObject personal) {
         this.key = UUID.randomUUID().toString();
