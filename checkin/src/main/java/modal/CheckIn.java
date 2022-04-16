@@ -1,14 +1,15 @@
 package modal;
 
+import Event.CheckInCreado;
 import lombok.Data;
+import util.AggregateRoot;
 import util.Entity;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
-public class CheckIn extends Entity<String> {
+public class CheckIn extends AggregateRoot<UUID> {
 
-    private UUID Key;
     private String CodigoSeguridad;
     private Date HoraCheckIn;
     private Boolean EstadoPaciente;
@@ -24,13 +25,12 @@ public class CheckIn extends Entity<String> {
     private Date Aterrisaje;
     private String Puerta;
 
-    public CheckIn(UUID key, String codigoSeguridad,
+    public CheckIn(String codigoSeguridad,
                    Date horaCheckIn, Boolean estadoPaciente,
                    String descripcion, int asiento, String vuelo,
                    String pesoEquipaje, int numeroEtiqueta, String abordaje,
                    String desde, String hasta, Date despeje, Date aterrisaje, String puerta) {
-        super.key = UUID.randomUUID().toString();
-        this.Key = key;
+        super.key = UUID.randomUUID();
         this.CodigoSeguridad = codigoSeguridad;
         this.HoraCheckIn = horaCheckIn;
         this.EstadoPaciente = estadoPaciente;
@@ -46,4 +46,10 @@ public class CheckIn extends Entity<String> {
         this.Aterrisaje = aterrisaje;
         this.Puerta = puerta;
     }
+
+    public void checkInCompletado(){
+        var event = new CheckInCreado(key, CodigoSeguridad);
+        addDomainEvent(event);
+    }
+
 }
