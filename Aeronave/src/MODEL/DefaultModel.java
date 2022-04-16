@@ -43,7 +43,6 @@ public class DefaultModel {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return "[key:" + key + ", fecha_on:" + fecha_on + ", estado:" + estado + "]";
     }
 

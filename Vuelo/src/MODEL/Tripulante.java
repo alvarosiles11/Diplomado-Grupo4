@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public class Tripulante {
     private String key;
-    private String descripcion;
+    private String descripcion; //cargo
     private JSONObject personal;
 
     public Tripulante(String descripcion, JSONObject personal) {
